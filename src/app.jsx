@@ -4,8 +4,10 @@ const contentNode = document.getElementById('contents')
 
 const continents = ['Africa','Asia','America','Europe'];
 
-const message = continents.map(c => `Hello ${c}! `).join('');
+//add some text to each and change array to a string
+const message = continents.map(c => `Hello ${c}?`).join(' ');
 
+//define the react component
 const component = <p>{message}</p>
 
 ReactDOM.render(component, contentNode);
