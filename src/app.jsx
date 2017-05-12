@@ -42,7 +42,7 @@ class IssueTable extends React.Component {
 class IssueRow extends React.Component {
   render() {
     const issue = this.props.issue;
-console.log('in render');
+    console.log('in render');
     return (
       <tr>
         <td>{issue.id}</td>
@@ -58,9 +58,33 @@ console.log('in render');
 }
 
 class IssueAdd extends React.Component {
+  constructor(){
+    super();
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e){
+    e.preventDefault();
+    var form = document.forms.issueAdd;
+    this.props.createIssue({
+      owner: form.owner.value,
+      title: form.title.value,
+      status: 'New',
+      created: new Date(),
+    });
+    // clear the form for the next input
+    form.owner.value = ""; form.title.value = "";
+  }
+
   render() {
     return (
-      <div>This is a placeholder for the issue add.</div>
+      <div>
+        <form name="issueAdd" onSubmit={this.handleSubmit}>
+        <input type="text" name="owner" placeholder="Owner" />
+        <input type="text" name="title" placeholder="Title" />
+        <button>Add</button>
+        </form>
+      </div>
     );
   }
 }
@@ -68,9 +92,10 @@ class IssueAdd extends React.Component {
 class IssueList extends React.Component {
   constructor() {
     super();
-    this.state = { issues:issues };
-
-    setTimeout(this.createTestIssue.bind(this), 2000);
+    this.state = { issues:[] };
+    this.createIssue = this.createIssue.bind(this);
+    //this.createTestIssue = this.createTestIssue.bind(this);  //mutiple binds can be eliminated
+    //setTimeout(this.createTestIssue.bind(this), 2000);
   }
 
   createIssue(newIssue) {
@@ -80,10 +105,20 @@ class IssueList extends React.Component {
     this.setState({ issues: newIssues}); //replace old state with new state, the view will rerender itself
   }
 
-  createTestIssue() {
-    this.createIssue({
-      status: 'New', owner: 'Pieta', created: new Date(), title: 'Completion date should be optional',
-    });
+  // createTestIssue() {
+  //   this.createIssue({
+  //     status: 'New', owner: 'Pieta', created: new Date(), title: 'Completion date should be optional',
+  //   });
+  // }
+
+  componentDidMount(){
+    this.loadData();
+  }
+
+  loadData(){
+    setTimeout( () => {
+      this.setState({ issues: issues});
+    },500);
   }
 
   render() {
@@ -93,8 +128,9 @@ class IssueList extends React.Component {
         <IssueFilter />
         <hr />
         <IssueTable issues={this.state.issues} />
+
         <hr/>
-        <IssueAdd />
+        <IssueAdd createIssue={this.createIssue} />
       </div>
     );
   }
