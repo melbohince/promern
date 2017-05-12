@@ -42,7 +42,7 @@ class IssueTable extends React.Component {
 class IssueRow extends React.Component {
   render() {
     const issue = this.props.issue;
-
+console.log('in render');
     return (
       <tr>
         <td>{issue.id}</td>
@@ -66,13 +66,33 @@ class IssueAdd extends React.Component {
 }
 
 class IssueList extends React.Component {
+  constructor() {
+    super();
+    this.state = { issues:issues };
+
+    setTimeout(this.createTestIssue.bind(this), 2000);
+  }
+
+  createIssue(newIssue) {
+    const newIssues = this.state.issues.slice(); //make a copy of the array
+    newIssue.id =  this.state.issues.length + 1;  //give it an id
+    newIssues.push(newIssue); //add the pama as a new item in the array
+    this.setState({ issues: newIssues}); //replace old state with new state, the view will rerender itself
+  }
+
+  createTestIssue() {
+    this.createIssue({
+      status: 'New', owner: 'Pieta', created: new Date(), title: 'Completion date should be optional',
+    });
+  }
+
   render() {
     return (
       <div>
         <h1>Issue Tracker</h1>
         <IssueFilter />
         <hr />
-        <IssueTable issues={issues} />
+        <IssueTable issues={this.state.issues} />
         <hr/>
         <IssueAdd />
       </div>
