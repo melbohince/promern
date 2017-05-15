@@ -14,43 +14,40 @@ const issues = [
   {id: 2, status: 'Assigned', owner: 'Eddie', created: new Date('2016-08-16'), effort: 14, completionDate: new Date('2016-08-30'), title: 'Missing bottom border on panel',},
 ];
 
-class IssueTable extends React.Component {
-  render() {
-    const issueRows = this.props.issues.map(issue => <IssueRow key={issue.id} issue={issue} />)
+function IssueTable(props){
+  const issueRows = this.props.issues.map(issue => <IssueRow key={issue.id} issue={issue} />)
 
-    return (
-      <table className="bordered-table">
-      <thead>
-      <tr>
-        <th>Id</th>
-        <th>Status</th>
-        <th>Owner</th>
-        <th>Created</th>
-        <th>Effort</th>
-        <th>Completion Date</th>
-        <th>Title</th>
-      </tr>
-      </thead>
-      <tbody>
-        {issueRows}
-      </tbody>
-      </table>
-    );
-  }
+  return (
+    <table className="bordered-table">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Status</th>
+      <th>Owner</th>
+      <th>Created</th>
+      <th>Effort</th>
+      <th>Completion Date</th>
+      <th>Title</th>
+    </tr>
+    </thead>
+    <tbody>
+      {issueRows}
+    </tbody>
+    </table>
+  );
 }
-//before
+
 const IssueRow = (props) => (
   <tr>
-    <td>{props.issue.id}</td>
-    <td>{props.issue.status}</td>
-    <td>{props.issue.owner}</td>
-    <td>{props.issue.created.toDateString()}</td>
-    <td>{props.issue.effort}</td>
-    <td>{props.issue.completionDate ? props.issue.completionDate.toDateString() : ''}</td>
-    <td>{props.issue.title}</td>
+    <td>{issue.id}</td>
+    <td>{issue.status}</td>
+    <td>{issue.owner}</td>
+    <td>{issue.created.toDateString()}</td>
+    <td>{issue.effort}</td>
+    <td>{issue.completionDate ? issue.completionDate.toDateString() : ''}</td>
+    <td>{issue.title}</td>
   </tr>
 )
-
 
 class IssueAdd extends React.Component {
   constructor(){

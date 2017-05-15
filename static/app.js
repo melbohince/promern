@@ -108,76 +108,61 @@ var IssueTable = function (_React$Component2) {
 
   return IssueTable;
 }(React.Component);
+//before
 
-var IssueRow = function (_React$Component3) {
-  _inherits(IssueRow, _React$Component3);
 
-  function IssueRow() {
-    _classCallCheck(this, IssueRow);
+var IssueRow = function IssueRow(props) {
+  return React.createElement(
+    'tr',
+    null,
+    React.createElement(
+      'td',
+      null,
+      props.issue.id
+    ),
+    React.createElement(
+      'td',
+      null,
+      props.issue.status
+    ),
+    React.createElement(
+      'td',
+      null,
+      props.issue.owner
+    ),
+    React.createElement(
+      'td',
+      null,
+      props.issue.created.toDateString()
+    ),
+    React.createElement(
+      'td',
+      null,
+      props.issue.effort
+    ),
+    React.createElement(
+      'td',
+      null,
+      props.issue.completionDate ? props.issue.completionDate.toDateString() : ''
+    ),
+    React.createElement(
+      'td',
+      null,
+      props.issue.title
+    )
+  );
+};
 
-    return _possibleConstructorReturn(this, (IssueRow.__proto__ || Object.getPrototypeOf(IssueRow)).apply(this, arguments));
-  }
-
-  _createClass(IssueRow, [{
-    key: 'render',
-    value: function render() {
-      var issue = this.props.issue;
-      console.log('in render');
-      return React.createElement(
-        'tr',
-        null,
-        React.createElement(
-          'td',
-          null,
-          issue.id
-        ),
-        React.createElement(
-          'td',
-          null,
-          issue.status
-        ),
-        React.createElement(
-          'td',
-          null,
-          issue.owner
-        ),
-        React.createElement(
-          'td',
-          null,
-          issue.created.toDateString()
-        ),
-        React.createElement(
-          'td',
-          null,
-          issue.effort
-        ),
-        React.createElement(
-          'td',
-          null,
-          issue.completionDate ? issue.completionDate.toDateString() : ''
-        ),
-        React.createElement(
-          'td',
-          null,
-          issue.title
-        )
-      );
-    }
-  }]);
-
-  return IssueRow;
-}(React.Component);
-
-var IssueAdd = function (_React$Component4) {
-  _inherits(IssueAdd, _React$Component4);
+var IssueAdd = function (_React$Component3) {
+  _inherits(IssueAdd, _React$Component3);
 
   function IssueAdd() {
     _classCallCheck(this, IssueAdd);
 
-    var _this4 = _possibleConstructorReturn(this, (IssueAdd.__proto__ || Object.getPrototypeOf(IssueAdd)).call(this));
+    var _this3 = _possibleConstructorReturn(this, (IssueAdd.__proto__ || Object.getPrototypeOf(IssueAdd)).call(this));
 
-    _this4.handleSubmit = _this4.handleSubmit.bind(_this4);
-    return _this4;
+    _this3.handleSubmit = _this3.handleSubmit.bind(_this3);
+    return _this3;
   }
 
   _createClass(IssueAdd, [{
@@ -218,19 +203,19 @@ var IssueAdd = function (_React$Component4) {
   return IssueAdd;
 }(React.Component);
 
-var IssueList = function (_React$Component5) {
-  _inherits(IssueList, _React$Component5);
+var IssueList = function (_React$Component4) {
+  _inherits(IssueList, _React$Component4);
 
   function IssueList() {
     _classCallCheck(this, IssueList);
 
-    var _this5 = _possibleConstructorReturn(this, (IssueList.__proto__ || Object.getPrototypeOf(IssueList)).call(this));
+    var _this4 = _possibleConstructorReturn(this, (IssueList.__proto__ || Object.getPrototypeOf(IssueList)).call(this));
 
-    _this5.state = { issues: [] };
-    _this5.createIssue = _this5.createIssue.bind(_this5);
+    _this4.state = { issues: [] };
+    _this4.createIssue = _this4.createIssue.bind(_this4);
     //this.createTestIssue = this.createTestIssue.bind(this);  //mutiple binds can be eliminated
     //setTimeout(this.createTestIssue.bind(this), 2000);
-    return _this5;
+    return _this4;
   }
 
   _createClass(IssueList, [{
@@ -256,10 +241,10 @@ var IssueList = function (_React$Component5) {
   }, {
     key: 'loadData',
     value: function loadData() {
-      var _this6 = this;
+      var _this5 = this;
 
       setTimeout(function () {
-        _this6.setState({ issues: issues });
+        _this5.setState({ issues: issues });
       }, 500);
     }
   }, {
