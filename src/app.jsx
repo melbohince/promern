@@ -14,9 +14,8 @@ const issues = [
   {id: 2, status: 'Assigned', owner: 'Eddie', created: new Date('2016-08-16'), effort: 14, completionDate: new Date('2016-08-30'), title: 'Missing bottom border on panel',},
 ];
 
-class IssueTable extends React.Component {
-  render() {
-    const issueRows = this.props.issues.map(issue => <IssueRow key={issue.id} issue={issue} />)
+function IssueTable(props) {
+    const issueRows = props.issues.map(issue => <IssueRow key={issue.id} issue={issue} />)
 
     return (
       <table className="bordered-table">
@@ -36,7 +35,6 @@ class IssueTable extends React.Component {
       </tbody>
       </table>
     );
-  }
 }
 //before
 const IssueRow = (props) => (
