@@ -176,7 +176,31 @@ var IssueAdd = function (_React$Component2) {
           React.createElement(
             'button',
             null,
-            'Add'
+            'Add Issue'
+          ),
+          React.createElement(
+            'select',
+            null,
+            React.createElement(
+              'option',
+              { value: 'grapefruit' },
+              'Grapefruit'
+            ),
+            React.createElement(
+              'option',
+              { value: 'lime' },
+              'Lime'
+            ),
+            React.createElement(
+              'option',
+              { selected: true, value: 'coconut' },
+              'Coconut'
+            ),
+            React.createElement(
+              'option',
+              { value: 'mango' },
+              'Mango'
+            )
           )
         )
       );
@@ -197,7 +221,8 @@ var IssueList = function (_React$Component3) {
     _this3.state = { issues: [] };
     _this3.createIssue = _this3.createIssue.bind(_this3);
     //this.createTestIssue = this.createTestIssue.bind(this);  //mutiple binds can be eliminated
-    //setTimeout(this.createTestIssue.bind(this), 2000);
+    //setTimeout(this.createTestIssue.bind(this), 2000); or
+    //setTimeout(() = > {this.createTestIssue()}, 2000);
     return _this3;
   }
 

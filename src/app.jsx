@@ -75,7 +75,13 @@ class IssueAdd extends React.Component {
         <form name="issueAdd" onSubmit={this.handleSubmit}>
         <input type="text" name="owner" placeholder="Owner" />
         <input type="text" name="title" placeholder="Title" />
-        <button>Add</button>
+        <button>Add Issue</button>
+        <select>
+  <option value="grapefruit">Grapefruit</option>
+  <option value="lime">Lime</option>
+  <option selected value="coconut">Coconut</option>
+  <option value="mango">Mango</option>
+</select>
         </form>
       </div>
     );
@@ -88,7 +94,8 @@ class IssueList extends React.Component {
     this.state = { issues:[] };
     this.createIssue = this.createIssue.bind(this);
     //this.createTestIssue = this.createTestIssue.bind(this);  //mutiple binds can be eliminated
-    //setTimeout(this.createTestIssue.bind(this), 2000);
+    //setTimeout(this.createTestIssue.bind(this), 2000); or
+    //setTimeout(() = > {this.createTestIssue()}, 2000);
   }
 
   createIssue(newIssue) {
